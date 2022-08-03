@@ -10,10 +10,10 @@ import { AppContext, playTrack } from '../State';
 import { search } from '../search';
 
 import { img } from '../util';
+import RemotePage from '../remote/RemotePage';
 
 const Search = () => {
   const { state, dispatch } = useContext<any>(AppContext);
-  const [isSearching, setIsSearching] = useState(false);
   const [tracks, setTracks] = useState<any>([]);
   const searchbarRef = useRef<any>();
 
@@ -40,27 +40,7 @@ const Search = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Search</IonTitle>
-        </IonToolbar>
-        <IonToolbar>
-          <IonSearchbar ref={searchbarRef} onIonChange={doSearch} />
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        {tracks.map((track: { title: {} | null | undefined; img: any; artist: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
-          <IonItem key={track.title as any} onClick={() => doPlay(track)} button>
-            <IonThumbnail slot="start">
-              <img src={img(track.img)} />
-            </IonThumbnail>
-            <IonLabel>
-              <h2>{track.title}</h2>
-              <p>{track.artist}</p>
-            </IonLabel>
-          </IonItem>
-        ))}
-      </IonContent>
+      <RemotePage __id="search" doSearch={doSearch} searchbarRef={searchbarRef} tracks={tracks} doPlay={doPlay} />
     </IonPage>
   );
 };
