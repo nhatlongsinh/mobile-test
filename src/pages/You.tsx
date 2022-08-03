@@ -21,7 +21,7 @@ const You = ({ history }: any) => {
   const recentTracks = getRecentTracks(state);
   const favTracks = getFavTracks(state);
 
-  const doPlay = useCallback(track => {
+  const doPlay = useCallback((track: any) => {
     dispatch(playTrack(track));
   }, [playTrack]);
 
@@ -37,7 +37,7 @@ const You = ({ history }: any) => {
         <IonToolbar>
           <IonTitle>Your Library</IonTitle>
           <IonButtons slot="end">
-            <IonButton fill="clear" onClick={e => { e.persist(); setShowUserMenuEvent(e as any) }}>
+            <IonButton fill="clear" onClick={(e: any) => { e.persist(); setShowUserMenuEvent(e as any) }}>
               <IonIcon icon={ellipsisVertical} />
             </IonButton>
           </IonButtons>
