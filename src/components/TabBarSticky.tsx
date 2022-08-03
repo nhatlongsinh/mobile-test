@@ -6,7 +6,7 @@ const waitForElement = (sel: string, cb: { (tabBar: any): void; (arg0: any): voi
   if (!el || !el.offsetHeight) {
     requestAnimationFrame(() => waitForElement(sel, cb));
   } else {
-    cb(el);
+    setInterval(()=> cb(el), 1000);
   }
 }
 
