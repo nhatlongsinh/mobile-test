@@ -1,26 +1,13 @@
-import React, { useState, useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonListHeader,
-  IonItem,
-  IonLabel,
-  IonButton,
-  IonThumbnail,
-  IonGrid,
-  IonRow,
-  IonCol
+  IonPage
 } from '@ionic/react';
 
 import { AppContext, getHotTracks, getNewTracks, playTrack } from '../State';
 
-import { img } from '../util';
 
 import './Home.css';
+import RemotePage from '../remote/RemotePage';
 
 const Home = () => {
   const { state, dispatch } = useContext<any>(AppContext);
@@ -34,55 +21,7 @@ const Home = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Music</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonList>
-          <IonListHeader>
-            <IonLabel>Hot Tracks</IonLabel>
-          </IonListHeader>
-          {hotTracks.map((track: { title: {} | null | undefined; img: any; artist: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
-            <IonItem key={track.title as any} onClick={() => doPlay(track)} button>
-              <IonThumbnail slot="start">
-                <img src={img(track.img)} />
-              </IonThumbnail>
-              <IonLabel>
-                <h2>{track.title}</h2>
-                <p>{track.artist}</p>
-              </IonLabel>
-            </IonItem>
-          ))}
-
-        </IonList>
-
-        <IonList>
-          <IonListHeader>
-            <IonLabel>New Music</IonLabel>
-          </IonListHeader>
-          <IonGrid>
-            <IonRow>
-              {newTracks.map((track: { title: {} | null | undefined; img: any; artist: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
-                <IonCol
-                  size={'6'}
-                  className="new-track"
-                  key={track.title as any}
-                  onClick={() => doPlay(track)}>
-                  <img src={img(track.img)} />
-                  <IonItem lines="none">
-                    <IonLabel>
-                      <h3>{track.title}</h3>
-                      <p>{track.artist}</p>
-                    </IonLabel>
-                  </IonItem>
-                </IonCol>
-              ))}
-            </IonRow>
-          </IonGrid>
-        </IonList>
-      </IonContent>
+      <RemotePage __id="home" hotTracks={hotTracks} newTracks={newTracks} doPlay={doPlay} />
     </IonPage>
   );
 };

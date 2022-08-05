@@ -4,10 +4,13 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import "./style.css";
+import { RemoteComponentProvider } from './remote/useRemoteComponent';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RemoteComponentProvider>
+      <App />
+    </RemoteComponentProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

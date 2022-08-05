@@ -1,8 +1,6 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import {
-  IonContent, IonHeader, IonItem, IonLabel, IonList,
-  IonLoading, IonPage, IonSearchbar, IonThumbnail, IonTitle, IonToolbar,
-  useIonViewDidEnter
+  IonPage, useIonViewDidEnter
 } from '@ionic/react';
 
 import { AppContext, playTrack } from '../State';
@@ -38,11 +36,8 @@ const Search = () => {
   })
   return (
     <IonPage>
-      <IonContent className='jason-content'>
-        {[...Array(100)].map((x, index) => (
-          <RemotePage key={index} __id={`search$(index)`} doSearch={doSearch} searchbarRef={searchbarRef} tracks={tracks} doPlay={doPlay} />))}
-      </IonContent>
-    </IonPage>
+      <RemotePage __id="search" doSearch={doSearch} searchbarRef={searchbarRef} tracks={tracks} doPlay={doPlay} />
+    </IonPage >
   );
 };
 

@@ -1,8 +1,6 @@
-import React, { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import {
-  IonBackButton, IonButtons, IonButton, IonHeader,
-  IonToolbar, IonTitle, IonContent, IonPage,
-  IonList, IonItem, IonLabel, IonInput, IonLoading
+  IonPage
 } from '@ionic/react';
 
 import { AppContext, loggedIn } from '../State';
@@ -11,12 +9,10 @@ import { login } from '../auth';
 import urls from '../urls';
 
 import './Form.css';
+import RemotePage from '../remote/RemotePage';
 
 const Login = ({ track, history }: any) => {
   const { dispatch } = useContext<any>(AppContext);
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [formErrors, setFormErrors] = useState(null);
   const [showLoading, setShowLoading] = useState(false);
 
@@ -25,10 +21,10 @@ const Login = ({ track, history }: any) => {
   const goTo = (path: string) => {
     history.push(path, { direction: 'forward' });
   }
-
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-
+  const closeLoading = () => {
+    setShowLoading(false)
+  }
+  const handleSubmit = async (email: any, password: any) => {
     try {
       setShowLoading(true);
 
@@ -48,38 +44,8 @@ const Login = ({ track, history }: any) => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar color="light">
-          <IonButtons slot="start">
-            <IonBackButton defaultHref={`/`} />
-          </IonButtons>
-          <IonTitle>Login</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="form">
-        <IonLoading isOpen={showLoading} message="Logging in..." onDidDismiss={() => setShowLoading(false)} />
-        <form onSubmit={handleSubmit} method="post" ref={formRef} action="">
-          <IonList>
-            <IonItem>
-              <IonLabel position={'fixed'}>Email</IonLabel>
-              <IonInput type="email" value={email} onInput={e => setEmail(e.currentTarget.value as any)} />
-            </IonItem>
-            <IonItem>
-              <IonLabel position={'fixed'}>Password</IonLabel>
-              <IonInput
-                type="password"
-                value={password}
-                onInput={e => setPassword(e.currentTarget.value as any)}
-              />
-            </IonItem>
-            <IonButton expand="block" type="submit">Log in</IonButton>
-          </IonList>
-        </form>
-        <div className="below-form">
-          <a className="create" href="#/" onClick={(e) => { e.preventDefault(); goTo('/signup') }}>Create account instead</a>
-          <a href="#/" onClick={(e) => { e.preventDefault(); goTo('/reset-password') }}>Forgot your password?</a>
-        </div>
-      </IonContent>
+      <RemotePage __id="login" showLoading={showLoading} closeLoading={closeLoading}
+        submit={handleSubmit} formRef={formRef} goTo={goTo} />
     </IonPage>
   );
 };

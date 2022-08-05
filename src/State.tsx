@@ -95,6 +95,7 @@ const reducer = (state: any, action: any) => {
       }
     }
     case 'FAV': {
+      console.log(action.track);
       const isFav = isFavTrack(state, action.track);
       const newFavs = getFavTracks(state).filter((t: any) => t.id !== action.track.id);
       return {

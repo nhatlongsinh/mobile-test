@@ -1,36 +1,21 @@
-import React, { useState, FormEvent } from 'react';
+import { useState } from 'react';
 
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonButton,
-  IonPage,
-  IonButtons,
-  IonBackButton
+  IonPage
 } from "@ionic/react";
 
-import { Link } from 'react-router-dom';
 
 import { resetPassword } from '../auth';
 
 import './Form.css';
+import RemotePage from '../remote/RemotePage';
 
 export const ResetPassword = ({ history, match }: any) => {
-  const [email, setEmail] = useState('');
   const [formErrors, setFormErrors] = useState(null);
 
-  const handleSubmit = async (e: Event) => {
-    e.preventDefault();
-
+  const handleSubmit = async (email: any) => {
     try {
       await resetPassword(email);
-      setEmail('');
       alert('Password reset email sent');
     } catch (e: any) {
       setFormErrors(e.code as any);
@@ -39,28 +24,8 @@ export const ResetPassword = ({ history, match }: any) => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar color="light">
-          <IonButtons slot="start">
-            <IonBackButton defaultHref={`/`} />
-          </IonButtons>
-          <IonTitle>Reset Password</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="form">
-        <form onSubmit={e => handleSubmit(e as any)} action="post">
-          <IonList>
-            <IonItem>
-              <IonLabel>Email</IonLabel>
-              <IonInput type="email" value={email} onInput={e => setEmail(e.currentTarget.value as any)} />
-            </IonItem>
-            <IonButton expand="block" type="submit">Reset Password</IonButton>
-          </IonList>
-        </form>
-        <div className="below-form">
-          <Link to='/login'>Back to login</Link>
-        </div>
-      </IonContent>
+      <RemotePage __id="reset" submit={handleSubmit} onBack={() =>
+        history.push('/')} />
     </IonPage>
   );
 }

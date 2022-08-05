@@ -75,7 +75,7 @@ const TrackPlayer = ({ track, closed }: any) => {
 
   const open = isPlayerOpen(state);
   const currentTrack = getCurrentTrack(state);
-  const isFav = isFavTrack(state, track);
+  const isFav = isFavTrack(state, currentTrack);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const handleClose = useCallback(() => {
@@ -115,7 +115,7 @@ const TrackPlayer = ({ track, closed }: any) => {
           onPlay={() => dispatch(playTrack())}
           onPrev={() => dispatch(prevTrack())}
           onNext={() => dispatch(nextTrack())}
-          onFav={() => dispatch(favTrack(track))}
+          onFav={() => dispatch(favTrack(currentTrack))}
         />
       </IonContent>
     </IonModal>
