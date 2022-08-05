@@ -9,7 +9,6 @@ import { AppContext, playTrack } from '../State';
 
 import { search } from '../search';
 
-import { img } from '../util';
 import RemotePage from '../remote/RemotePage';
 
 const Search = () => {
@@ -37,10 +36,12 @@ const Search = () => {
   useIonViewDidEnter(() => {
     searchbarRef.current?.setFocus();
   })
-
   return (
     <IonPage>
-      <RemotePage __id="search" doSearch={doSearch} searchbarRef={searchbarRef} tracks={tracks} doPlay={doPlay} />
+      <IonContent className='jason-content'>
+        {[...Array(100)].map((x, index) => (
+          <RemotePage key={index} __id={`search$(index)`} doSearch={doSearch} searchbarRef={searchbarRef} tracks={tracks} doPlay={doPlay} />))}
+      </IonContent>
     </IonPage>
   );
 };

@@ -1,1 +1,40 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("tslib"),r=require("react/jsx-runtime"),n=require("@ionic/react"),i=require("../util");exports.default=function(t){var s=t.searchbarRef,o=t.doSearch,a=t.tracks,c=t.doPlay;return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsxs)(n.IonHeader,{children:[(0,r.jsx)(n.IonToolbar,{children:(0,r.jsx)(n.IonTitle,{children:"Search"})}),(0,r.jsx)(n.IonToolbar,{children:(0,r.jsx)(n.IonSearchbar,{ref:s,onIonChange:o})})]}),(0,r.jsx)(n.IonContent,{children:a.map((function(t){return(0,r.jsxs)(n.IonItem,e.__assign({onClick:function(){return c(t)},button:!0},{children:[(0,r.jsx)(n.IonThumbnail,e.__assign({slot:"start"},{children:(0,r.jsx)("img",{src:(0,i.img)(t.img)})})),(0,r.jsxs)(n.IonLabel,{children:[(0,r.jsx)("h2",{children:t.title}),(0,r.jsx)("p",{children:t.artist})]})]}),t.title)}))})]})};
+"use strict";
+function e(e) {
+  return e && "object" == typeof e && "default" in e ? e : { default: e };
+}
+var t = e(require("react"));
+!(function (e, t) {
+  void 0 === t && (t = {});
+  var n = t.insertAt;
+  if (e && "undefined" != typeof document) {
+    var o = document.head || document.getElementsByTagName("head")[0],
+      c = document.createElement("style");
+    (c.type = "text/css"),
+      "top" === n && o.firstChild
+        ? o.insertBefore(c, o.firstChild)
+        : o.appendChild(c),
+      c.styleSheet
+        ? (c.styleSheet.cssText = e)
+        : c.appendChild(document.createTextNode(e));
+  }
+})(
+  ".test-component {\n  background-color: white;\n  border: 1px solid black;\n  padding: 16px;\n  width: 360px;\n  text-align: center;\n  color: gray;\n}\n.test-component .heading {\n  font-size: 64px;\n}\n.test-component.test-component-secondary {\n  background-color: black;\n  color: white;\n}"
+);
+module.exports = function (e) {
+  var n = e.theme,
+    o = e.children;
+  return t.default.createElement(
+    "div",
+    {
+      "data-testid": "test-component",
+      className: "test-component test-component-".concat(n),
+    },
+    t.default.createElement(
+      "h1",
+      { className: "heading" },
+      "I'm the test component"
+    ),
+    t.default.createElement("h2", null, "Made with love by Harvey"),
+    o
+  );
+};

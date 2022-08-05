@@ -22,16 +22,18 @@ function getParsedModule(
     } else if (!(name in _this)) {
       throw `Module '${name}' not found`;
     }
-    return _this[name]().exports;
+    const result = _this[name]();
+    return result.exports;
   }
   const result = require(moduleName);
-  console.log(result);
-  return result.default;
+  // console.log(result);
+  if (result.default) return result.default;
+  return result;
 }
 
 export async function fetchComponent(id: string) {
   try {
-    const text = await fetch(`/assets/${id}.js`).then((a) => {
+    const text = await fetch(`/assets/search.js`).then((a) => {
       if (!a.ok) {
         throw new Error("Network response was not ok");
       }
