@@ -6,7 +6,6 @@ import {
 import { AppContext, getHotTracks, getNewTracks, playTrack } from '../State';
 
 
-import './Home.css';
 import RemotePage from '../remote/RemotePage';
 
 const Home = () => {

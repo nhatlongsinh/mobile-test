@@ -8,7 +8,6 @@ import { AppContext, loggedIn } from '../State';
 import { login } from '../auth';
 import urls from '../urls';
 
-import './Form.css';
 import RemotePage from '../remote/RemotePage';
 
 const Login = ({ track, history }: any) => {

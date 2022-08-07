@@ -7,7 +7,6 @@ import {
 
 import { resetPassword } from '../auth';
 
-import './Form.css';
 import RemotePage from '../remote/RemotePage';
 
 export const ResetPassword = ({ history, match }: any) => {

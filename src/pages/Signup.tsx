@@ -9,7 +9,6 @@ import { signup } from '../auth';
 
 import urls from '../urls';
 
-import './Form.css';
 import RemotePage from '../remote/RemotePage';
 
 const Signup = ({ track, history }: any) => {
